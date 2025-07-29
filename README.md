@@ -9,7 +9,7 @@ Talkive is a multilingual application designed to help users learn and practice 
 
 ### 1. Clone the repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/hasantkbs/Talkive.git
 cd talkive
 ```
 
