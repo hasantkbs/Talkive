@@ -1,4 +1,9 @@
-transformers
+
 torch
-sentencepiece
 langdetect
+SpeechRecognition
+PyAudio
+pyttsx3
+language-tool-python
+fastapi
+uvicorn[standard]

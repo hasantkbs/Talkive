@@ -41,18 +41,25 @@ python app/main.py
 
 Upon starting, you will be prompted to select a language. You can switch languages anytime from the main menu.
 
+### Grammar Correction Differences
+In Write Mode, the application now uses `difflib` to highlight the differences between your original input and the corrected text, making it easier to see the changes.
+
+## Logging
+
+Performance metrics (e.g., correction time, response time) are logged to `performance.log` in the project's root directory. You can monitor this file to track the application's performance.
+
 ## Models Used
 
 This project utilizes pre-trained models from Hugging Face for its core functionalities. The models are selected based on the user's language choice.
 
-| Module     | Language | Model                                       |
-|------------|----------|---------------------------------------------|
-| **Writing**  | English  | `vennify/t5-base-grammar-correction`        |
-|            | Turkish  | `savasy/bert-base-turkish-grammar-correction` |
-|            | Spanish  | `unbabel/wmt22-comet-da`                    |
-| **Talking**  | English  | `mzbac/gemma-2-9b-grammar-correction`       |
-|            | Turkish  | `dbmdz/bert-base-turkish-cased`             |
-|            | Spanish  | `Helsinki-NLP/opus-mt-en-es`                |
+| Module     | Language | Model                                              |
+|------------|----------|----------------------------------------------------|
+| **Writing**  | English  | `vennify/t5-base-grammar-correction`         |
+|            | Turkish  | `google/mt5-small`                   |
+|            | Spanish  | `google/mt5-small` |
+| **Talking**  | English  | `microsoft/DialoGPT-small`                         |
+|            | Turkish  | `dbmdz/bert-base-turkish-cased` (Not optimized for conversation) |
+|            | Spanish  | `Helsinki-NLP/opus-mt-en-es` (Not optimized for conversation) |
 
 ---
 

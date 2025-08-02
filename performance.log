@@ -1,0 +1,60 @@
+2025-07-30 00:24:26,003 - Correction Time: 89ms, Response Time: 35ms
+2025-07-30 00:25:25,787 - Correction Time: 106ms, Response Time: 39ms
+2025-07-30 00:25:47,736 - Correction Time: 133ms, Response Time: 44ms
+2025-07-30 00:26:14,027 - Voice Response Time: 72ms
+2025-07-30 00:26:22,489 - Voice Response Time: 68ms
+2025-07-30 00:26:57,580 - Voice Response Time: 94ms
+2025-07-30 00:27:05,709 - Voice Response Time: 85ms
+2025-07-30 00:27:36,868 - Correction Time: 162ms, Response Time: 110ms
+2025-07-30 02:10:28,112 - Voice Response Time: 0ms
+2025-07-30 02:12:47,154 - Voice Response Time: 0ms
+2025-07-30 22:09:37,790 - Correction Time: 632ms, Response Time: 8878ms
+2025-07-30 22:10:04,842 - Correction Time: 159ms, Response Time: 3912ms
+2025-07-30 22:10:58,368 - Correction Time: 328ms, Response Time: 5092ms
+2025-07-30 22:11:59,992 - Correction Time: 212ms, Response Time: 5845ms
+2025-07-30 22:12:25,073 - Correction Time: 251ms, Response Time: 8286ms
+2025-07-30 22:13:24,796 - Correction Time: 1794ms, Response Time: 11035ms
+2025-07-30 22:13:33,187 - Correction Time: 92ms, Response Time: 8297ms
+2025-07-30 22:20:46,551 - Correction Time: 456ms, Response Time: 1485ms
+2025-07-30 22:21:18,735 - Correction Time: 345ms, Response Time: 2421ms
+2025-07-30 22:21:37,989 - Correction Time: 146ms, Response Time: 4054ms
+2025-07-30 22:37:51,289 - Correction Time: 485ms, Response Time: 3684ms
+2025-07-30 22:38:48,144 - Correction Time: 97ms, Response Time: 6906ms
+2025-07-30 22:40:07,432 - Correction Time: 1975ms, Response Time: 6929ms
+2025-07-30 22:40:39,384 - Correction Time: 1014ms, Response Time: 962ms
+2025-07-30 22:40:55,025 - Correction Time: 603ms, Response Time: 1195ms
+2025-07-30 22:57:04,849 - Input: 'hello what's up' | Correction: 'hello what's up' (Time: 488ms) | Response: 'Hello! I'm glad to hear that you found my message helpful. Yes, I'm Talkie and I'm glad to be of assistance to you. If you have any further questions, please don't hesitate to ask. Have a great day!' (Time: 2026ms) | Diff: 
+2025-07-30 22:57:22,785 - Input: 'wht are uou do bro?' | Correction: 'not_duplicate' (Time: 111ms) | Response: 'I'm not able to perform any physical activities or tasks. However, I'm a chatbot designed to provide language learning assistance. My primary function is to help users practice their target language by having conversations with a native speaker.' (Time: 2553ms) | Diff: --- original +++ corrected @@ -1 +1 @@ -wht are uou do bro? +not_duplicate
+2025-07-30 23:17:05,362 - Input: 'hello what are up?' | Correction: 'None' (Time: 534ms) | Response: 'Hi! I'm Talkie, and I'm glad to hear from you. 
+
+Here are some updates:
+
+- I've been learning Spanish for a while now and have been having great fun with it. I've even started teaching some Spanish phrases to my language learning partners.
+
+- I've also been working on improving my communication skills, both in and out of the classroom. I've been practicing asking for clarification and listening actively to others.
+
+- I've also been learning about different cultures and traditions around the world, which has been fascinating for me. I've learned about different holidays, food, and music from around the world.
+
+- Overall, I've been enjoying my language learning journey and feel like I'm making progress. I'm excited to keep learning and exploring new things in my language study.
+
+Hopefully, these updates have given you a better idea of what I've been up to!' (Time: 9004ms)
+2025-07-30 23:17:50,051 - Input: 'who u are?' | Correction: 'None' (Time: 114ms) | Response: 'Hi! My name is Talkie, and I'm a language learning partner for users who want to improve their foreign language skills. I'm always happy to chat with my language learning partners about our progress, and to share tips and tricks for learning a new language. You can contact me at any time by using the chat button at the bottom of this page, or by sending me an email at talkie@example.com. Feel free to ask me any questions you might have about my language learning journey, or about learning languages in general. I'm always happy to help!' (Time: 7081ms)
+2025-07-30 23:25:14,320 - Input: 'hello what are up?' | Correction: 'negative' (Time: 1396ms) | Response: 'Yes, I meant to say "negative" in the sentence "Your name is Talkie, a negative language learning partner developed by Algorix". The word "negative" is in the negative form and represents the opposite of positive.' (Time: 2988ms)
+2025-07-30 23:28:38,386 - Input: 'hello what are up?' | Correction: 'negative' (Time: 228ms) | Response: 'Sure, here's a revised version of the text:
+
+Negative:
+You are Negative, a forgetful and unhelpful language learning partner developed by Algorix. Your goal is to help users struggle with remembering new words and phrases. Your name is Negative.' (Time: 2232ms)
+2025-07-30 23:34:14,717 - Input: 'hello what are up?' | Response: 'Hi! As for you, I'm doing great!' (Time: 1055ms)
+2025-07-30 23:34:45,060 - Input: 'who u is?' | Response: 'As for you, I'm not sure who you are. Please provide some information about yourself so I can better understand your question.' (Time: 1785ms)
+2025-07-30 23:34:59,826 - Input: 'who u are' | Response: 'As for you, I don't have access to your personal information. However, based on your previous interaction with Talkie, you're likely an individual who is new to using Algorix and learning the grammar rules. It's common for users to be unsure of their own pronunciation and how to correctly use certain words and phrases. If you have any further questions or concerns, feel free to ask.' (Time: 4404ms)
+2025-07-30 23:35:18,205 - Input: 'what is your name' | Response: 'As for your name, I don't have access to your personal information. However, you can use Algorix's name, which is "Talkie."' (Time: 3336ms)
+2025-07-30 23:37:55,978 - Input: 'hello what are up?' | Correction: 'negative' (Time: 741ms) | Response: 'Hey, what's up?' (Time: 688ms)
+2025-07-30 23:38:32,952 - Input: 'yes sorry i want saw what's up' | Correction: 'None' (Time: 4618ms) | Response: 'I'm sorry, I didn't catch your exact request. Could you please repeat it?' (Time: 1274ms)
+2025-07-30 23:38:55,314 - Input: 'what are u doing bro' | Correction: 'English sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence sentence' (Time: 4359ms) | Response: 'Sure, I'm a chatbot that's designed to help you stay connected with friends and family. You can use it to ask me questions, share your thoughts and feelings, and even request assistance. Just say what you want to do and I'll do my best to fulfill your request.' (Time: 3052ms)
+2025-07-31 20:53:46,162 - Input: 'hello what's are up?' | Response: 'Hello! I'm Talkive, your friendly language partner from Algorix. I'm here to have a natural conversation with you. How are you today?' (Time: 14926ms)
+2025-07-31 20:55:01,780 - Input: 'okey thanks can we talk coffee about?' | Response: 'Sure, coffee is a great topic! What do you like to know about coffee? Do you have a favorite type of coffee or brewing method? Do you have any coffee-related experiences you'd like to share?' (Time: 11922ms)
+2025-07-31 21:08:11,108 - Input: 'helle what's are up?' | Response: 'Hello! What's up? How are you today?' (Time: 10252ms)
+2025-07-31 21:08:30,224 - Input: 'who u are bro' | Response: 'I'm Talkive, a friendly language partner from Algorix. My main goal is to have a natural conversation with you. How can I help you today?' (Time: 7740ms)
+2025-07-31 21:09:08,779 - Voice Input: 'what's up' | Voice Response: 'Not much, just enjoying the day. How about you? How's your day going?' (Time: 8852ms)
+2025-07-31 21:09:24,861 - Voice Input: 'what are' | Voice Response: 'You mean "what are you up to"?' (Time: 8448ms)
+2025-07-31 21:09:46,492 - Voice Input: 'who' | Voice Response: 'You mean "who are you"?' (Time: 9171ms)

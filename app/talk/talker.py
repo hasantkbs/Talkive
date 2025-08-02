@@ -1,64 +1,97 @@
-from transformers import pipeline
+# -*- coding: utf-8 -*-
+import time
+import os
+import torch
+from transformers import pipeline, AutoTokenizer
 
 class TalkingPartner:
     def __init__(self, language: str = 'en'):
-        """
-        Initializes the TalkingPartner with a pre-trained conversational AI model
-        based on the selected language.
-
-        Args:
-            language: The language for conversation ('en', 'tr', or 'es').
-        """
         self.language = language
         self.model_name = self._get_model_for_language(language)
-        self.talk_pipeline = None
+        self.conversation_pipeline = None
+        self.conversation_history = None
+
+        # Cihazı otomatik olarak belirle (MPS > CPU)
+        if torch.backends.mps.is_available():
+            self.device = "mps"
+        else:
+            self.device = "cpu"
+        print(f"Device set to use {self.device}")
 
         if self.model_name:
             try:
-                print(f"Initializing the {language.upper()} conversational AI model: {self.model_name}...")
-                task = "text-generation" if self.language != 'es' else "translation_en_to_es"
-                self.talk_pipeline = pipeline(
-                    task,
+                self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+                if self.tokenizer.pad_token is None:
+                    self.tokenizer.pad_token = self.tokenizer.eos_token
+                self.tokenizer.padding_side = "left"
+                hf_token = os.environ.get("HF_TOKEN")
+                self.conversation_pipeline = pipeline(
+                    "text-generation",
                     model=self.model_name,
-                    device=-1  # Use -1 for CPU
+                    tokenizer=self.tokenizer,
+                    token=hf_token,
+                    device=self.device,  # Belirlenen cihazı kullan
+                    max_new_tokens=250,
+                    do_sample=True,
+                    temperature=0.7,
+                    top_k=50,
+                    top_p=0.95,
+                    pad_token_id=self.tokenizer.eos_token_id
                 )
-                print("Model initialized successfully.")
+                self.reset_conversation()
             except Exception as e:
-                print(f"Failed to initialize the model: {e}")
-        else:
-            print(f"No conversational model specified for language: {language}")
+                pass
 
     def _get_model_for_language(self, lang: str) -> str:
         models = {
-            'en': "mzbac/gemma-2-9b-grammar-correction",
-            'tr': "dbmdz/bert-base-turkish-cased", # Using a generic Turkish model
-            'es': "Helsinki-NLP/opus-mt-en-es" # Using a translation model for Spanish
+            'en': "mistralai/Mistral-7B-Instruct-v0.1",
+            'tr': "mistralai/Mistral-7B-Instruct-v0.1",
+            'es': "mistralai/Mistral-7B-Instruct-v0.1"
         }
         return models.get(lang)
 
-    def get_response(self, user_input: str) -> str:
-        """
-        Generates a response to the user's input based on the selected language.
-        """
-        if not self.talk_pipeline:
-            return "Error: Conversational AI model is not available."
+    def reset_conversation(self):
+        system_prompt = "You are Talkive, a friendly language partner from Algorix. Your main goal is to have a natural conversation. Your name is Talkive. If the user makes a grammar mistake, correct it and then continue the conversation."
+        
+        self.conversation_history = [
+            {
+                "role": "system",
+                "content": system_prompt
+            }
+        ]
+
+    def get_response(self, user_input: str) -> tuple[str, int]:
+        if not self.conversation_pipeline:
+            return "Error: Conversational AI model is not available.", 0
 
         try:
-            if self.language == 'es': # Translation model expects English input
-                prompt = f"Translate to Spanish: {user_input}"
-            else:
-                prompt = f"User: {user_input}\nAI:"
+            start_time = time.time()
 
-            print(f"Generating response for: '{user_input}'")
-            results = self.talk_pipeline(prompt, max_length=150, num_return_sequences=1)
+            # Her istek için geçici bir konuşma geçmişi oluştur.
+            # Bu, paylaşılan state sorununu çözer.
+            # Sistem mesajını al ve kullanıcı mesajını ekle.
+            temp_conversation = [
+                self.conversation_history[0], # Sistem mesajını kopyala
+                {"role": "user", "content": user_input}
+            ]
+
+            prompt = self.tokenizer.apply_chat_template(
+                temp_conversation,
+                tokenize=False,
+                add_generation_prompt=True
+            )
+
+            results = self.conversation_pipeline(prompt)
+            response = results[0]['generated_text'].replace(prompt, "").strip()
             
-            if isinstance(results, list) and results:
-                if 'generated_text' in results[0]:
-                    return results[0]['generated_text']
-                elif 'translation_text' in results[0]: # For Helsinki-NLP models
-                    return results[0]['translation_text']
-            return str(results)
+            # ÖNEMLİ: Ortak geçmişi GÜNCELLEME. Sadece lokal yanıtı döndür.
+            # self.conversation_history.append({"role": "assistant", "content": response})
 
+            end_time = time.time()
+            duration_ms = int((end_time - start_time) * 1000)
+            
+            return response, duration_ms
         except Exception as e:
-            return f"An error occurred during response generation: {e}"
+            return f"An error occurred during response generation: {e}", 0
+0
 
