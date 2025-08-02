@@ -43,7 +43,10 @@ def chat(request: ChatRequest):
     # Önceden yüklenmiş modeli sözlükten al
     talker = talkers.get(request.language)
     if not talker:
+        print(f"DEBUG: Model not loaded for language: {request.language}")
         return {"error": f"Language '{request.language}' not supported or model not loaded."}
+    
+    print(f"DEBUG: Received message: {request.message}, language: {request.language}")
     
     response, _ = talker.get_response(request.message)
     return {"response": response}

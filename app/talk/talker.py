@@ -81,17 +81,19 @@ class TalkingPartner:
                 add_generation_prompt=True
             )
 
+            print(f"DEBUG: Prompt generated. Length: {len(prompt)}")
+
             results = self.conversation_pipeline(prompt)
+            print("DEBUG: Pipeline results received.")
             response = results[0]['generated_text'].replace(prompt, "").strip()
             
-            # ÖNEMLİ: Ortak geçmişi GÜNCELLEME. Sadece lokal yanıtı döndür.
-            # self.conversation_history.append({"role": "assistant", "content": response})
-
             end_time = time.time()
             duration_ms = int((end_time - start_time) * 1000)
+            print(f"DEBUG: Response generated in {duration_ms}ms.")
             
             return response, duration_ms
         except Exception as e:
+            print(f"ERROR in get_response: {e}")
             return f"An error occurred during response generation: {e}", 0
 0
 
