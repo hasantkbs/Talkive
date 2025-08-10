@@ -1,9 +1,23 @@
-
+# Core ML
 torch
-langdetect
+transformers
+sentencepiece
+accelerate
+bitsandbytes
+
+# Web API
+fastapi
+uvicorn[standard]
+
+# Voice
 SpeechRecognition
 PyAudio
 pyttsx3
-language-tool-python
-fastapi
-uvicorn[standard]
+langdetect
+
+# CLI
+rich
+
+# Testing
+pytest
+httpx
