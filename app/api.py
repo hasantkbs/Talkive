@@ -4,6 +4,8 @@ from pydantic import BaseModel
 from app.talk.talker import TalkingPartner
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
+from fastapi.responses import StreamingResponse
+import asyncio
 
 # Modelleri hafızada tutmak için bir sözlük
 talkers = {}
@@ -25,6 +27,10 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+@app.get("/")
+async def read_root():
+    return {"message": "Server is running"}
+
 # CORS Middleware Ayarları
 app.add_middleware(
     CORSMiddleware,
@@ -38,15 +44,17 @@ class ChatRequest(BaseModel):
     message: str
     language: str
 
+async def stream_generator(talker: TalkingPartner, message: str):
+    response, _ = talker.get_response(message)
+    words = response.split()
+    for word in words:
+        yield f"{word} "
+        await asyncio.sleep(0.1) # Kelimeler arasında küçük bir gecikme
+
 @app.post("/chat")
-def chat(request: ChatRequest):
-    # Önceden yüklenmiş modeli sözlükten al
+async def chat(request: ChatRequest):
     talker = talkers.get(request.language)
     if not talker:
-        print(f"DEBUG: Model not loaded for language: {request.language}")
         return {"error": f"Language '{request.language}' not supported or model not loaded."}
     
-    print(f"DEBUG: Received message: {request.message}, language: {request.language}")
-    
-    response, _ = talker.get_response(request.message)
-    return {"response": response}
+    return StreamingResponse(stream_generator(talker, request.message), media_type="text/event-stream")
